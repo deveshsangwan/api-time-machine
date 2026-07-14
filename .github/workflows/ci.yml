@@ -8,6 +8,9 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      PNPM_CONFIG_MINIMUM_RELEASE_AGE_EXCLUDE: >-
+        ["@openai/codex-sdk@0.144.4", "@openai/codex@0.144.4 || 0.144.4-darwin-arm64 || 0.144.4-darwin-x64 || 0.144.4-linux-arm64 || 0.144.4-linux-x64 || 0.144.4-win32-arm64 || 0.144.4-win32-x64"]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -17,7 +20,8 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
       - run: pnpm check
       - name: Run historical-client compatibility gate
         run: pnpm --filter @atm/cli exec tsx src/index.ts
