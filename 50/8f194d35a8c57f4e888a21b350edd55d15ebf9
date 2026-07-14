@@ -1,0 +1,29 @@
+handoffs/README.md
+  s_7dd86aa5b0e784::t_3c5e0cdc3c6406 1-12
+handoffs/client-ui/HANDOFF.md
+  s_7dd86aa5b0e784::t_3c5e0cdc3c6406 1-48
+handoffs/backend/HANDOFF.md
+  s_7dd86aa5b0e784::t_3c5e0cdc3c6406 1-47
+handoffs/integration/HANDOFF.md
+  s_7dd86aa5b0e784::t_3c5e0cdc3c6406 1-49
+README.md
+  s_7dd86aa5b0e784::t_3c5e0cdc3c6406 40-41
+handoffs/mlops/HANDOFF.md
+  s_7dd86aa5b0e784::t_3c5e0cdc3c6406 1-46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "508f194d35a8c57f4e888a21b350edd55d15ebf9",
+  "prompts": {},
+  "sessions": {
+    "s_7dd86aa5b0e784": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5f58-63bd-7e51-8b41-d4cbc7448f49",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "deveshsangwan <dev.sangwan2001@gmail.com>"
+    }
+  }
+}
