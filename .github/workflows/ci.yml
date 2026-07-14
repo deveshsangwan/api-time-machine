@@ -19,3 +19,5 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
+      - name: Run historical-client compatibility gate
+        run: pnpm --filter @atm/cli exec tsx src/index.ts
