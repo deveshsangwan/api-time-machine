@@ -1,0 +1,37 @@
+apps/backend/src/app.ts
+  s_2858699edec9ab::t_48be7c9e493e7a 9-12
+apps/backend/test/capture.test.ts
+  s_2858699edec9ab::t_474794f8c73ed3 29-37
+  s_2858699edec9ab::t_8ddcfa660517a7 12-14,22-26
+  s_2858699edec9ab::t_1736bece9c9c05 38-43
+  s_2858699edec9ab::t_f9edc97609c601 59,85-100
+  s_2858699edec9ab::t_9d5efafc5340ec 27,70-82,84
+  s_2858699edec9ab::t_bffe8ab784d24f 28,60-69
+  s_2858699edec9ab::t_96069e6c3922d7 50-58
+  s_2858699edec9ab::t_0fbae7d2cc7160 44-49
+apps/backend/src/capture.ts
+  s_2858699edec9ab::t_43b676e8159f78 26-27
+  s_2858699edec9ab::t_8ddcfa660517a7 33-36
+apps/backend/src/domain/verification.ts
+  s_2858699edec9ab::t_6811cc8b815e18 16-17,33
+  s_2858699edec9ab::t_c06420c644ba65 3-4
+  s_2858699edec9ab::t_d57ca65875a7a1 5,7-15,18-28,37
+  s_2858699edec9ab::t_8ccfdc0ecf8b77 6,29-30
+  s_2858699edec9ab::t_48be7c9e493e7a 31-32,34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "9a57daec2b83b41f0fd097e33497550d9a57b446",
+  "prompts": {},
+  "sessions": {
+    "s_2858699edec9ab": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5fa1-44b4-7393-b1ae-73feb7cb72d3",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "deveshsangwan <dev.sangwan2001@gmail.com>"
+    }
+  }
+}
