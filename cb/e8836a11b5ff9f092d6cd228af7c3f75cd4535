@@ -1,0 +1,21 @@
+apps/cli/test/smoke.test.ts
+  s_72a522e4daa526::t_dc50f3a0cf425a 10
+apps/cli/src/smoke.ts
+  s_72a522e4daa526::t_dc50f3a0cf425a 13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "cbe8836a11b5ff9f092d6cd228af7c3f75cd4535",
+  "prompts": {},
+  "sessions": {
+    "s_72a522e4daa526": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5fa4-52c3-7af1-b22a-5b4b31f53f8d",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "deveshsangwan <dev.sangwan2001@gmail.com>"
+    }
+  }
+}
