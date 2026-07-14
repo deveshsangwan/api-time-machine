@@ -17,5 +17,11 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        env:
+          PNPM_CONFIG_FETCH_RETRIES: "5"
+          PNPM_CONFIG_FETCH_RETRY_FACTOR: "2"
+          PNPM_CONFIG_FETCH_RETRY_MINTIMEOUT: "10000"
+          PNPM_CONFIG_FETCH_RETRY_MAXTIMEOUT: "60000"
+        run: pnpm install --frozen-lockfile
       - run: pnpm check
