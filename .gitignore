@@ -7,3 +7,10 @@ coverage/
 .worktrees/
 runs/
 *.log
+
+# Local and provider credentials. Commit only deliberately blank examples.
+.env
+.env.*
+!.env.example
+*.pem
+*.key

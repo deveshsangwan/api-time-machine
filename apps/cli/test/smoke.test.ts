@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import { runScaffoldSmoke } from "../src/smoke.js";
 
-describe("scaffold vertical smoke", () => {
-  it("proves the repaired backend preserves the strict release 1.0 parser", async () => {
+describe("repaired vertical smoke", () => {
+  it("proves the real backend projects a legacy-safe response for release 1.0", async () => {
     const run = await runScaffoldSmoke();
 
     expect(run.status).toBe("compatible");

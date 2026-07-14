@@ -1,0 +1,76 @@
+name: Live Codex evaluation
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Live check to run
+        required: true
+        default: auth-only
+        type: choice
+        options:
+          - auth-only
+          - repair-only
+          - full
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-codex-evaluation
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    name: ${{ inputs.mode }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: hackthon-demo
+    env:
+      CODEX_API_KEY: ${{ secrets.CODEX_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.7.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Verify secret and pinned-model access
+        run: |
+          node --input-type=module <<'EOF'
+          const key = process.env.CODEX_API_KEY;
+          if (!key) {
+            throw new Error("CODEX_API_KEY is missing from the hackthon-demo environment");
+          }
+
+          const response = await fetch(
+            "https://api.openai.com/v1/models/gpt-5.6-sol",
+            { headers: { Authorization: `Bearer ${key}` } },
+          );
+          if (!response.ok) {
+            let code = "unknown";
+            try {
+              const body = await response.json();
+              code = body?.error?.code ?? body?.error?.type ?? code;
+            } catch {}
+            throw new Error(
+              `Pinned-model access failed with HTTP ${response.status} (${code})`,
+            );
+          }
+          console.log("Service-account authentication and pinned-model access passed");
+          EOF
+
+      - name: Run live Candidate Repair evaluation
+        if: inputs.mode == 'repair-only'
+        run: pnpm --filter @atm/codex eval:sdk:repair
+
+      - name: Run full live analysis and Candidate Repair evaluation
+        if: inputs.mode == 'full'
+        run: pnpm --filter @atm/codex eval:sdk
