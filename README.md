@@ -130,6 +130,7 @@ runs/<run-id>/
 ### 3. Reproduce the red path
 
 ```bash
+git fetch origin demo/historical-breaking
 git switch demo/historical-breaking
 pnpm install --frozen-lockfile
 pnpm --filter @atm/cli exec tsx src/index.ts
@@ -195,7 +196,7 @@ apps/dashboard    Focused Client Survival Matrix presentation
 
 ## CI behavior
 
-CI installs locked dependencies, runs repository checks, fetches immutable historical tags, and executes the compatibility gate. A verified parser rejection returns **1**. A missing tag, timeout, malformed evidence, or toolchain error returns **2**. Only a fully compatible matrix returns **0**.
+The historical-gate CI workflow is ready on `workstream/ci-gate`: it fetches immutable historical tags, then runs repository checks and the compatibility gate. A verified parser rejection returns **1**. A missing tag, timeout, malformed evidence, or toolchain error returns **2**. Only a fully compatible matrix returns **0**.
 
 ## Honest limitations
 
