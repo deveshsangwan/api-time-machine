@@ -38,9 +38,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
 
       - name: Verify secret and pinned-model access
         run: |
@@ -66,6 +63,18 @@ jobs:
           }
           console.log("Service-account authentication and pinned-model access passed");
           EOF
+
+      - name: Install Codex evaluation dependencies
+        if: inputs.mode != 'auth-only'
+        env:
+          PNPM_CONFIG_FETCH_RETRIES: "5"
+          PNPM_CONFIG_FETCH_RETRY_FACTOR: "2"
+          PNPM_CONFIG_FETCH_RETRY_MINTIMEOUT: "10000"
+          PNPM_CONFIG_FETCH_RETRY_MAXTIMEOUT: "60000"
+        run: |
+          pnpm install --frozen-lockfile \
+            --filter . \
+            --filter '@atm/codex...'
 
       - name: Run live Candidate Repair evaluation
         if: inputs.mode == 'repair-only'
