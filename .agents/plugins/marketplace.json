@@ -1,0 +1,20 @@
+{
+  "name": "api-time-machine-local",
+  "interface": {
+    "displayName": "API Time Machine Local"
+  },
+  "plugins": [
+    {
+      "name": "api-time-machine",
+      "source": {
+        "source": "local",
+        "path": "./plugins/api-time-machine"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

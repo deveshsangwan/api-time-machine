@@ -1,0 +1,27 @@
+{
+  "name": "api-time-machine",
+  "version": "0.1.0",
+  "description": "Check backend API changes against historical mobile-client behavior and propose bounded compatibility repairs.",
+  "author": {
+    "name": "API Time Machine Team",
+    "url": "https://github.com/deveshsangwan"
+  },
+  "homepage": "https://github.com/deveshsangwan/api-time-machine",
+  "repository": "https://github.com/deveshsangwan/api-time-machine",
+  "keywords": ["api-compatibility", "mobile", "mlops", "regression-testing"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "API Time Machine",
+    "shortDescription": "Verify historical mobile API compatibility.",
+    "longDescription": "Runs deterministic compatibility evidence first, then uses bounded semantic reasoning to explain failures and propose backend-only Candidate Repairs.",
+    "developerName": "API Time Machine Team",
+    "category": "Productivity",
+    "capabilities": ["Interactive"],
+    "websiteURL": "https://github.com/deveshsangwan/api-time-machine",
+    "defaultPrompt": [
+      "Check this backend API change against historical mobile clients.",
+      "Run the synthetic compatibility eval and explain any failures.",
+      "Propose a bounded backend repair for this compatibility break."
+    ]
+  }
+}

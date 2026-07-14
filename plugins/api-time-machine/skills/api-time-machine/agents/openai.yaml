@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Time Machine"
+  short_description: "Verify historical mobile API compatibility"
+  default_prompt: "Use $api-time-machine to check this backend API change against historical mobile clients."

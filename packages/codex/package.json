@@ -4,12 +4,21 @@
   "private": true,
   "type": "module",
   "exports": "./src/index.ts",
+  "bin": {
+    "atm-codex": "./dist/cli.js"
+  },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --clean",
+    "build": "tsup src/index.ts src/cli.ts --format esm --clean",
+    "simulate": "node --import tsx src/cli.ts simulate",
+    "eval": "node --import tsx src/cli.ts eval",
+    "demo": "node --import tsx src/cli.ts demo",
+    "eval:sdk": "node --import tsx src/cli.ts eval-sdk",
+    "eval:sdk:repair": "node --import tsx src/cli.ts eval-sdk-repair",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
-    "@atm/contracts": "workspace:*"
+    "@atm/contracts": "workspace:*",
+    "@openai/codex-sdk": "0.144.4"
   }
 }
