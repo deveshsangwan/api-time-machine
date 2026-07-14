@@ -7,6 +7,33 @@ import {
   type CompatibilityStatus,
 } from "@atm/contracts";
 
+export {
+  ReleaseManifestError,
+  loadReleaseManifest,
+  parseReleaseManifest,
+} from "./releases.js";
+
+export {
+  HistoricalWorktreeError,
+  createHistoricalWorktree,
+  withHistoricalWorktree,
+  type CommandResult,
+  type CommandRunner,
+  type HistoricalWorktree,
+  type HistoricalWorktreeOptions,
+  type WorktreeDependencies,
+} from "./worktrees.js";
+
+export { defaultCommandRunner, runCommand } from "./process.js";
+
+export {
+  EvidenceBundleError,
+  writeEvidenceBundle,
+  type EvidenceBundle,
+  type EvidenceBundleInput,
+  type EvidenceDependencies,
+} from "./evidence.js";
+
 export interface CompatibilityAdapters {
   captureResponse(release: ClientRelease): Promise<CapturedResponse>;
   runClient(
