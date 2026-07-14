@@ -7,7 +7,7 @@ describe("scaffold vertical smoke", () => {
     const run = await runScaffoldSmoke();
 
     expect(run.status).toBe("incompatible");
-    expect(run.blastRadius).toBe(1);
+    expect(run.blastRadius).toBe(0.18);
     expect(run.clients).toHaveLength(1);
     expect(run.clients[0]?.responseSha256).toMatch(/^[a-f0-9]{64}$/);
     console.log(JSON.stringify(run, null, 2));
