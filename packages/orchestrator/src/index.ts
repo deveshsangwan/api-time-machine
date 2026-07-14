@@ -26,6 +26,14 @@ export {
 
 export { defaultCommandRunner, runCommand } from "./process.js";
 
+export {
+  EvidenceBundleError,
+  writeEvidenceBundle,
+  type EvidenceBundle,
+  type EvidenceBundleInput,
+  type EvidenceDependencies,
+} from "./evidence.js";
+
 export interface CompatibilityAdapters {
   captureResponse(release: ClientRelease): Promise<CapturedResponse>;
   runClient(
