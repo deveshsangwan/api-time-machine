@@ -63,6 +63,8 @@ need changing for that fix.
 
 ## Remaining coordination
 
-- Push the branch and annotated release tags after remote-write approval.
+- Push is currently blocked: GitHub rejected the current account with `403`
+  for `deveshsangwan/api-time-machine`. The branch and annotated release tags
+  are ready locally; retry after repository write access is granted.
 - Integration must replace the dashboard fixture with its persisted
   `CompatibilityRun` data when its evidence flow is available.
