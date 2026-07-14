@@ -1,7 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { GrainGradient, StaticRadialGradient } from "@paper-design/shaders-react";
 
-import type { ClientResult, CompatibilityRun } from "@atm/contracts";
+import type {
+  ChangeProfile,
+  ClientResult,
+  CompatibilityRun,
+  RepairProposal,
+} from "@atm/contracts";
 
 const sha = "a7618f2c62b0e8ab95f3a9c00d35e4ba8e76b1a7d778987a4d35c29cc7b64ab9";
 
@@ -87,6 +92,23 @@ const statusCopy = {
 export type DashboardProps = {
   run?: CompatibilityRun;
   beforeRun?: CompatibilityRun;
+  semantic?: SemanticResult;
+};
+
+type SemanticResult =
+  | { status: "not_requested" }
+  | { status: "analysis_accepted"; change: ChangeProfile }
+  | {
+      status: "candidate_repair";
+      change: ChangeProfile;
+      repair: Pick<RepairProposal, "summary" | "legacyProjection" | "allowedPaths">;
+    }
+  | { status: "rejected"; message: string };
+
+type DashboardPayload = {
+  compatibility: CompatibilityRun;
+  semantic: SemanticResult;
+  source: "local-evidence";
 };
 
 function sourcePointer(result: ClientResult) {
@@ -104,9 +126,20 @@ function formatDuration(value: number) {
 
 type DashboardViewProps = DashboardProps & {
   onExit: () => void;
+  onAnalyze: () => void;
+  codexState: "idle" | "running" | "failed";
+  integrationMessage: string;
 };
 
-function DashboardView({ run = demoRun, beforeRun, onExit }: DashboardViewProps) {
+function DashboardView({
+  run = demoRun,
+  beforeRun,
+  semantic = { status: "not_requested" },
+  onExit,
+  onAnalyze,
+  codexState,
+  integrationMessage,
+}: DashboardViewProps) {
   const [selectedVersion, setSelectedVersion] = useState(run.clients[0]?.release.version ?? "");
   const [copied, setCopied] = useState(false);
   const selected = run.clients.find((result) => result.release.version === selectedVersion) ?? run.clients[0];
@@ -174,6 +207,14 @@ function DashboardView({ run = demoRun, beforeRun, onExit }: DashboardViewProps)
           <div className="topbar-actions">
             <button className="quiet-button" type="button" onClick={onExit}>Overview</button>
             <span className={`status status-${run.status}`}>{statusCopy[run.status]}</span>
+            <button
+              className="quiet-button codex-button"
+              type="button"
+              disabled={codexState === "running"}
+              onClick={onAnalyze}
+            >
+              {codexState === "running" ? "Codex is analyzing…" : "Analyze with Codex"}
+            </button>
             <button className="quiet-button" type="button" onClick={copyRunId}>
               {copied ? "Copied" : "Copy run ID"}
             </button>
@@ -296,6 +337,39 @@ function DashboardView({ run = demoRun, beforeRun, onExit }: DashboardViewProps)
               <div><dt>Adoption input</dt><dd>{selected ? `${selected.release.source}; observed ${new Date(selected.release.observedAt).toLocaleString()}` : "No adoption input recorded"}</dd></div>
             </dl>
           </aside>
+        </section>
+
+        <section className="surface semantic-surface" aria-labelledby="semantic-title">
+          <div className="surface-header">
+            <div>
+              <p className="eyebrow">Codex SDK / advisory layer</p>
+              <h2 id="semantic-title">Semantic analysis</h2>
+            </div>
+            <span className={`semantic-state semantic-${semantic.status}`}>
+              {semantic.status === "candidate_repair" ? "Candidate Repair · unverified" : semantic.status.replaceAll("_", " ")}
+            </span>
+          </div>
+          <div className="semantic-body">
+            {semantic.status === "not_requested" ? (
+              <p>Run Codex against the latest captured response and the current uncommitted backend diff.</p>
+            ) : null}
+            {semantic.status === "analysis_accepted" ? (
+              <>
+                <strong>{semantic.change.endpoint}</strong>
+                <p>Accepted change profile: <code>{semantic.change.field}</code> adds <code>{semantic.change.newValues.join(", ")}</code>. Deterministic parser results above remain authoritative.</p>
+              </>
+            ) : null}
+            {semantic.status === "candidate_repair" ? (
+              <>
+                <strong>{semantic.repair.summary}</strong>
+                <p>
+                  Proposed legacy projection: <code>{semantic.repair.legacyProjection?.from}</code> to <code>{semantic.repair.legacyProjection?.to}</code> below <code>{semantic.repair.legacyProjection?.capabilityThreshold}</code>. This is not verified until the isolated historical-client rerun passes.
+                </p>
+              </>
+            ) : null}
+            {semantic.status === "rejected" ? <p>{semantic.message}</p> : null}
+            <small>{integrationMessage}</small>
+          </div>
         </section>
 
         <section className="surface evidence" id="evidence" aria-labelledby="evidence-title">
@@ -445,8 +519,17 @@ function DashboardBackdrop() {
   );
 }
 
-export default function App({ run, beforeRun }: DashboardProps) {
+export default function App({ run, beforeRun, semantic: suppliedSemantic }: DashboardProps) {
   const [dashboardOpen, setDashboardOpen] = useState(() => window.location.hash === "#dashboard");
+  const [livePayload, setLivePayload] = useState<DashboardPayload>();
+  const [semanticOverride, setSemanticOverride] = useState<SemanticResult>();
+  const [codexState, setCodexState] = useState<"idle" | "running" | "failed">("idle");
+  const [integrationMessage, setIntegrationMessage] = useState(
+    run ? "CompatibilityRun supplied by the host application." : "Connecting to the local evidence bridge…",
+  );
+
+  const activeRun = run ?? livePayload?.compatibility ?? demoRun;
+  const activeSemantic = suppliedSemantic ?? semanticOverride ?? livePayload?.semantic ?? { status: "not_requested" as const };
 
   useEffect(() => {
     const syncRoute = () => setDashboardOpen(window.location.hash === "#dashboard");
@@ -457,6 +540,49 @@ export default function App({ run, beforeRun }: DashboardProps) {
       window.removeEventListener("hashchange", syncRoute);
     };
   }, []);
+
+  useEffect(() => {
+    if (run) return;
+
+    const controller = new AbortController();
+    fetch("/api/time-machine/latest", { signal: controller.signal })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Local evidence bridge is unavailable.");
+        return response.json() as Promise<DashboardPayload>;
+      })
+      .then((payload) => {
+        setLivePayload(payload);
+        setIntegrationMessage("Loaded from the latest local deterministic evidence bundle.");
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setIntegrationMessage("Showing bundled sample data. Start the local dashboard bridge to load real evidence.");
+      });
+
+    return () => controller.abort();
+  }, [run]);
+
+  async function analyzeWithCodex() {
+    setCodexState("running");
+    try {
+      const response = await fetch("/api/time-machine/codex", { method: "POST" });
+      const body = await response.json() as DashboardPayload | { error?: string };
+      if (!response.ok || !("compatibility" in body)) {
+        throw new Error("error" in body ? body.error : "Codex analysis failed.");
+      }
+      setLivePayload(body);
+      setSemanticOverride(body.semantic);
+      setCodexState("idle");
+      setIntegrationMessage("Validated Codex SDK output grounded in the current backend diff and local run evidence.");
+    } catch (error) {
+      setCodexState("failed");
+      setSemanticOverride({
+        status: "rejected",
+        message: error instanceof Error ? error.message : "Codex analysis failed.",
+      });
+      setIntegrationMessage("Codex output was not accepted; deterministic compatibility evidence is unchanged.");
+    }
+  }
 
   function openDashboard() {
     window.location.hash = "dashboard";
@@ -469,7 +595,15 @@ export default function App({ run, beforeRun }: DashboardProps) {
   }
 
   return dashboardOpen ? (
-    <DashboardView run={run} beforeRun={beforeRun} onExit={closeDashboard} />
+    <DashboardView
+      run={activeRun}
+      beforeRun={beforeRun}
+      semantic={activeSemantic}
+      onExit={closeDashboard}
+      onAnalyze={analyzeWithCodex}
+      codexState={codexState}
+      integrationMessage={integrationMessage}
+    />
   ) : (
     <Landing onOpenDashboard={openDashboard} />
   );

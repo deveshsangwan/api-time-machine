@@ -92,6 +92,8 @@ a { color: inherit; text-decoration: none; }
 .quiet-button:hover { background: rgb(57 137 239 / .18); transform: translateY(-1px); }
 .quiet-button:active { transform: translateY(1px) scale(.985); }
 .quiet-button:focus-visible { outline: 2px solid #7ab8ff; outline-offset: 3px; }
+.quiet-button:disabled { cursor: wait; opacity: .55; transform: none; }
+.codex-button { color: #b8cfff; }
 .status-compatible { color: #64d4ac; }
 .status-incompatible { color: #ff9c86; }
 .status-inconclusive { color: #f0bd72; }
@@ -155,6 +157,16 @@ button.table-row:focus-visible { outline: 2px solid #7ab8ff; outline-offset: -2p
 .comparison-row { display: grid; grid-template-columns: 1.1fr 1.5fr auto; gap: 16px; align-items: center; min-height: 56px; padding: 12px 18px; color: #aab8c9; box-shadow: inset 0 1px rgb(255 255 255 / .06); }
 .comparison-row span, .comparison-row small { color: #7f90a7; font-family: "JetBrains Mono", monospace; font-size: 10px; }
 .comparison-row strong { color: #e1eaf4; font-size: 12px; }
+.semantic-surface { grid-column: 1; }
+.semantic-state { color: #8b8b83; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: capitalize; }
+.semantic-candidate_repair { color: #f0bd72; }
+.semantic-analysis_accepted { color: #6bc2a0; }
+.semantic-rejected { color: #f09a88; }
+.semantic-body { padding: 18px; }
+.semantic-body strong { color: #e4e4dc; font-size: 14px; }
+.semantic-body p { max-width: 76ch; margin: 7px 0 0; color: #aaa9a1; font-size: 12px; line-height: 1.6; }
+.semantic-body code { color: #cdddf5; font-family: "JetBrains Mono", monospace; }
+.semantic-body small { display: block; margin-top: 13px; color: #777770; font-family: "JetBrains Mono", monospace; font-size: 10px; }
 
 @media (prefers-reduced-motion: no-preference) {
   .landing-copy, .landing-preview { animation: settle 560ms cubic-bezier(.2,.8,.2,1) both; }
@@ -187,7 +199,7 @@ button.table-row:focus-visible { outline: 2px solid #7ab8ff; outline-offset: -2p
 @media (max-width: 860px) {
   .app-shell { grid-template-columns: 72px minmax(0, 1fr); }
   .workspace { grid-template-columns: 1fr; }
-  .topbar, .run-strip, .outcome-grid, .execution, .clients-surface, .evidence { grid-column: 1; }
+  .topbar, .run-strip, .outcome-grid, .execution, .clients-surface, .semantic-surface, .evidence { grid-column: 1; }
   .inspector { position: static; grid-column: 1; grid-row: auto; }
 }
 

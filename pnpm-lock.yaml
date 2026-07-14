@@ -50,6 +50,9 @@ importers:
       '@atm/backend':
         specifier: workspace:*
         version: link:../backend
+      '@atm/codex':
+        specifier: workspace:*
+        version: link:../../packages/codex
       '@atm/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts

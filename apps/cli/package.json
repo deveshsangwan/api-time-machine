@@ -4,13 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsup src/index.ts --format esm --clean",
+    "build": "tsup src/index.ts src/dashboard-server.ts --format esm --clean",
+    "dashboard:api": "node --import tsx src/dashboard-server.ts",
+    "start": "node --import tsx src/index.ts",
     "smoke": "vitest run test/smoke.test.ts --reporter=verbose",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
     "@atm/backend": "workspace:*",
+    "@atm/codex": "workspace:*",
     "@atm/contracts": "workspace:*",
     "@atm/mobile": "workspace:*",
     "@atm/orchestrator": "workspace:*"
