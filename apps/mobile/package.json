@@ -1,0 +1,23 @@
+{
+  "name": "@atm/mobile",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "exports": {
+    ".": "./src/api/verification.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "start": "expo start",
+    "android": "expo start --android",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "expo": "^57.0.4",
+    "react": "^19.2.7",
+    "react-native": "^0.86.0",
+    "zod": "^4.4.3"
+  }
+}

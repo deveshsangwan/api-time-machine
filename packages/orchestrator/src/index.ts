@@ -1,0 +1,60 @@
+import {
+  CompatibilityRunSchema,
+  type CapturedResponse,
+  type ClientRelease,
+  type ClientResult,
+  type CompatibilityRun,
+  type CompatibilityStatus,
+} from "@atm/contracts";
+
+export interface CompatibilityAdapters {
+  captureResponse(release: ClientRelease): Promise<CapturedResponse>;
+  runClient(
+    release: ClientRelease,
+    response: CapturedResponse,
+  ): Promise<ClientResult>;
+  now?(): Date;
+}
+
+export interface CompatibilityRequest {
+  runId: string;
+  releases: ClientRelease[];
+}
+
+function classifyRun(results: ClientResult[]): CompatibilityStatus {
+  if (results.some((result) => result.status === "incompatible")) {
+    return "incompatible";
+  }
+  if (results.some((result) => result.status === "inconclusive")) {
+    return "inconclusive";
+  }
+  return "compatible";
+}
+
+export async function runCompatibilityCheck(
+  request: CompatibilityRequest,
+  adapters: CompatibilityAdapters,
+): Promise<CompatibilityRun> {
+  const now = adapters.now ?? (() => new Date());
+  const startedAt = now().toISOString();
+
+  const clients = await Promise.all(
+    request.releases.map(async (release) => {
+      const response = await adapters.captureResponse(release);
+      return adapters.runClient(release, response);
+    }),
+  );
+
+  const blastRadius = clients
+    .filter((result) => result.status === "incompatible")
+    .reduce((sum, result) => sum + result.release.activeShare, 0);
+
+  return CompatibilityRunSchema.parse({
+    runId: request.runId,
+    status: classifyRun(clients),
+    clients,
+    blastRadius: Math.round(blastRadius * 1_000_000) / 1_000_000,
+    startedAt,
+    completedAt: now().toISOString(),
+  });
+}

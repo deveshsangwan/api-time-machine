@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "API Time Machine Demo Client",
+    "slug": "api-time-machine-client",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "dev.apitimemachine.client"
+    }
+  }
+}

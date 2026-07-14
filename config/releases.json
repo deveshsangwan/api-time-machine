@@ -1,0 +1,32 @@
+[
+  {
+    "platform": "android-react-native",
+    "version": "1.0.0",
+    "gitTag": "app-v1.0.0",
+    "activeShare": 0.18,
+    "supported": true,
+    "source": "hackathon-sample",
+    "observedAt": "2026-07-14T00:00:00.000Z",
+    "testCommand": "pnpm test -- --runInBand"
+  },
+  {
+    "platform": "android-react-native",
+    "version": "1.1.0",
+    "gitTag": "app-v1.1.0",
+    "activeShare": 0.27,
+    "supported": true,
+    "source": "hackathon-sample",
+    "observedAt": "2026-07-14T00:00:00.000Z",
+    "testCommand": "pnpm test -- --runInBand"
+  },
+  {
+    "platform": "android-react-native",
+    "version": "1.2.0",
+    "gitTag": "app-v1.2.0",
+    "activeShare": 0.55,
+    "supported": true,
+    "source": "hackathon-sample",
+    "observedAt": "2026-07-14T00:00:00.000Z",
+    "testCommand": "pnpm test -- --runInBand"
+  }
+]

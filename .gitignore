@@ -1,1 +1,9 @@
 .scratch/
+node_modules/
+.pnpm-store/
+dist/
+coverage/
+.expo/
+.worktrees/
+runs/
+*.log
