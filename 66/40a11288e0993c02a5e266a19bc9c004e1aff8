@@ -1,0 +1,39 @@
+apps/dashboard/vite.config.ts
+  s_89891a9b3c71f0::t_514a4d8bcaf0a6 6-10
+apps/dashboard/src/styles.css
+  s_89891a9b3c71f0::t_49af0a462de739 95-96,160-169,202
+apps/cli/src/dashboard-server.ts
+  s_89891a9b3c71f0::t_514a4d8bcaf0a6 1-3,9-27,45-77,80-85
+  s_89891a9b3c71f0::t_4ae59c297f5722 4-8,28-44,78-79
+apps/cli/test/dashboard-api.test.ts
+  s_89891a9b3c71f0::t_f4431a72d3fecc 1-68,72-96,101-127
+  s_89891a9b3c71f0::t_3668621bae686e 69-71,97-100
+apps/dashboard/src/App.tsx
+  s_89891a9b3c71f0::t_da843af0ff2e89 525,532,574,579-582
+  s_89891a9b3c71f0::t_49af0a462de739 4-9,95-103,105-111,129-131,134-142,210-217,342-374,522,524,526-531,544-573,575-578,583-586,598-606
+  s_89891a9b3c71f0::t_3668621bae686e 104
+apps/cli/package.json
+  s_89891a9b3c71f0::t_f4431a72d3fecc 9
+  s_89891a9b3c71f0::t_514a4d8bcaf0a6 7-8,16
+apps/cli/src/dashboard-api.ts
+  s_89891a9b3c71f0::t_514a4d8bcaf0a6 1-11,13-24,26-34,40-158,185-208,210-216,219-224,226-229
+  s_89891a9b3c71f0::t_3668621bae686e 12,25,35-39,159-184,209,217-218,225
+pnpm-lock.yaml
+  s_89891a9b3c71f0::t_1550f2c1cdd19c 53-55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "6640a11288e0993c02a5e266a19bc9c004e1aff8",
+  "prompts": {},
+  "sessions": {
+    "s_89891a9b3c71f0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f6068-41dd-7193-bc56-82331dc86f7e",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "deveshsangwan <dev.sangwan2001@gmail.com>"
+    }
+  }
+}
