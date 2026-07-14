@@ -1,0 +1,14 @@
+.github/workflows/ci.yml
+  h_9c147e6399b95b 24-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "60f783ec1c564e237addfb399e15250cdf1fc263",
+  "prompts": {},
+  "humans": {
+    "h_9c147e6399b95b": {
+      "author": "deveshsangwan <dev.sangwan2001@gmail.com>"
+    }
+  }
+}
