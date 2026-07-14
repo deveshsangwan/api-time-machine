@@ -37,6 +37,8 @@ pnpm dev:dashboard
 
 Read [the coordination guide](docs/WORKSTREAMS.md) and the brief under `docs/workstreams/` before starting a workstream.
 
+Codex-ready handoffs are versioned under [`handoffs/`](handoffs/README.md), with one separate folder per developer.
+
 ## Repository shape
 
 ```text
