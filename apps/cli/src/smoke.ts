@@ -10,7 +10,7 @@ const scaffoldRelease = ClientReleaseSchema.parse({
   platform: "android-react-native",
   version: "1.0.0",
   gitTag: "app-v1.0.0",
-  activeShare: 1,
+  activeShare: 0.18,
   supported: true,
   source: "scaffold-smoke",
   observedAt: "2026-07-14T00:00:00.000Z",
