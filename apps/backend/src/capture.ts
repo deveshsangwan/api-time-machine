@@ -23,15 +23,17 @@ export async function captureVerificationResponse(input: {
   verificationId?: string;
 }): Promise<CapturedResponse> {
   const app = buildApp();
-  const url = `/verification/${input.verificationId ?? "verification_123"}`;
+  const verificationId = input.verificationId ?? "verification_123";
+  const url = `/verification/${encodeURIComponent(verificationId)}`;
 
   try {
     const response = await app.inject({
       method: "GET",
       url,
-      headers: input.appVersion
-        ? { "x-app-version": input.appVersion }
-        : undefined,
+      headers:
+        input.appVersion === null
+          ? undefined
+          : { "x-app-version": input.appVersion },
     });
 
     return CapturedResponseSchema.parse({
