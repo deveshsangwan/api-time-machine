@@ -7,6 +7,12 @@ import {
   type CompatibilityStatus,
 } from "@atm/contracts";
 
+export {
+  ReleaseManifestError,
+  loadReleaseManifest,
+  parseReleaseManifest,
+} from "./releases.js";
+
 export interface CompatibilityAdapters {
   captureResponse(release: ClientRelease): Promise<CapturedResponse>;
   runClient(

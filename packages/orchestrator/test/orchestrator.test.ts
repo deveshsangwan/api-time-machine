@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { fileURLToPath } from "node:url";
 
 import type {
   CapturedResponse,
@@ -6,7 +7,12 @@ import type {
   ClientResult,
 } from "@atm/contracts";
 
-import { runCompatibilityCheck } from "../src/index.js";
+import {
+  ReleaseManifestError,
+  loadReleaseManifest,
+  parseReleaseManifest,
+  runCompatibilityCheck,
+} from "../src/index.js";
 
 const releases: ClientRelease[] = [
   {
@@ -76,5 +82,53 @@ describe("runCompatibilityCheck", () => {
     expect(run.status).toBe("incompatible");
     expect(run.blastRadius).toBe(0.18);
     expect(run.clients).toHaveLength(2);
+  });
+});
+
+describe("parseReleaseManifest", () => {
+  it("loads the configured release registry through the shared schema", async () => {
+    const releasesPath = fileURLToPath(
+      new URL("../../../config/releases.json", import.meta.url),
+    );
+
+    await expect(loadReleaseManifest(releasesPath)).resolves.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ version: "1.0.0", gitTag: "app-v1.0.0" }),
+        expect.objectContaining({ version: "1.1.0", gitTag: "app-v1.1.0" }),
+        expect.objectContaining({ version: "1.2.0", gitTag: "app-v1.2.0" }),
+      ]),
+    );
+  });
+
+  it("validates every configured release and returns only supported releases", () => {
+    const manifest = [
+      ...releases,
+      {
+        ...releases[0],
+        version: "0.9.0",
+        gitTag: "app-v0.9.0",
+        supported: false,
+      },
+    ];
+
+    expect(parseReleaseManifest(manifest)).toEqual(releases);
+  });
+
+  it("fails closed when even an unsupported release is malformed", () => {
+    const manifest = [
+      {
+        ...releases[0],
+        supported: false,
+        activeShare: 1.2,
+      },
+    ];
+
+    expect(() => parseReleaseManifest(manifest)).toThrow(ReleaseManifestError);
+  });
+
+  it("rejects a manifest that is not an array", () => {
+    expect(() => parseReleaseManifest({ releases })).toThrow(
+      "Release manifest must be a JSON array",
+    );
   });
 });
