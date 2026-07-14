@@ -3,6 +3,7 @@ import { z } from "zod";
 const KnownVerificationStatusSchema = z.enum([
   "VERIFIED",
   "PENDING",
+  "MANUAL_REVIEW",
   "REJECTED",
 ]);
 

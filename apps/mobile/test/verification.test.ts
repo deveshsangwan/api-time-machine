@@ -13,13 +13,13 @@ describe("parseVerificationResponse", () => {
     ).toBe("PENDING");
   });
 
-  it("maps MANUAL_REVIEW to the explicit PENDING fallback in release 1.1", () => {
+  it("supports MANUAL_REVIEW natively in release 1.2", () => {
     expect(
       parseVerificationResponse({
         id: "verification_123",
         status: "MANUAL_REVIEW",
         updatedAt: "2026-07-14T10:30:00.000Z",
       }).status,
-    ).toBe("PENDING");
+    ).toBe("MANUAL_REVIEW");
   });
 });
