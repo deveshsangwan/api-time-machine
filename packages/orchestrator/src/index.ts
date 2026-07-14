@@ -13,6 +13,19 @@ export {
   parseReleaseManifest,
 } from "./releases.js";
 
+export {
+  HistoricalWorktreeError,
+  createHistoricalWorktree,
+  withHistoricalWorktree,
+  type CommandResult,
+  type CommandRunner,
+  type HistoricalWorktree,
+  type HistoricalWorktreeOptions,
+  type WorktreeDependencies,
+} from "./worktrees.js";
+
+export { defaultCommandRunner, runCommand } from "./process.js";
+
 export interface CompatibilityAdapters {
   captureResponse(release: ClientRelease): Promise<CapturedResponse>;
   runClient(
