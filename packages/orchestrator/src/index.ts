@@ -34,6 +34,12 @@ export {
   type EvidenceDependencies,
 } from "./evidence.js";
 
+export {
+  compatibilityExitCode,
+  renderSurvivalMatrix,
+  type CompatibilityExitCode,
+} from "./report.js";
+
 export interface CompatibilityAdapters {
   captureResponse(release: ClientRelease): Promise<CapturedResponse>;
   runClient(
