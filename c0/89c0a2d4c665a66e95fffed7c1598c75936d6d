@@ -1,0 +1,152 @@
+apps/dashboard/src/main.tsx
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-11
+apps/mobile/app.json
+  s_7dd86aa5b0e784::t_82d1fee023430f 5
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-4,6-12
+README.md
+  s_7dd86aa5b0e784::t_139a92c84056e3 1-67
+apps/dashboard/src/App.tsx
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-91
+packages/contracts/package.json
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-7,9-10,14-15
+  s_7dd86aa5b0e784::t_4c126ba8ce396c 11-13
+  s_7dd86aa5b0e784::t_871ff6742c4fd7 8
+apps/dashboard/tsconfig.json
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-7
+apps/cli/src/index.ts
+  s_7dd86aa5b0e784::t_0dec222f81e198 1,3
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 2,4
+packages/codex/src/index.ts
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-50
+docs/workstreams/integration.md
+  s_7dd86aa5b0e784::t_139a92c84056e3 1-58
+CONTEXT.md
+  s_7dd86aa5b0e784::t_c6fae769226300 1-38
+apps/backend/src/server.ts
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-5
+apps/mobile/test/verification.test.ts
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-5,7-9,11-12,14-15,17-19,21-25
+  s_7dd86aa5b0e784::t_82d1fee023430f 6,10,13,16,20
+docs/WORKSTREAMS.md
+  s_7dd86aa5b0e784::t_c6fae769226300 1-53
+apps/cli/test/smoke.test.ts
+  s_7dd86aa5b0e784::t_0dec222f81e198 1-15
+apps/dashboard/vite.config.ts
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-6
+apps/dashboard/src/styles.css
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-125
+.github/workflows/ci.yml
+  s_7dd86aa5b0e784::t_c6fae769226300 1-21
+packages/orchestrator/tsconfig.json
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-8
+apps/backend/src/app.ts
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-13
+.gitignore
+  s_7dd86aa5b0e784::t_582565b3cc237c 3
+  s_7dd86aa5b0e784::t_c6fae769226300 2,4-9
+apps/mobile/App.tsx
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-5,7-8,10-40
+  s_7dd86aa5b0e784::t_82d1fee023430f 6,9
+apps/dashboard/package.json
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-10,16-17
+  s_7dd86aa5b0e784::t_4c126ba8ce396c 11-15
+packages/orchestrator/test/orchestrator.test.ts
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-80
+apps/backend/test/capture.test.ts
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-20
+apps/dashboard/src/vite-env.d.ts
+  s_7dd86aa5b0e784::t_ae78e6e95a6867 1
+apps/cli/tsconfig.json
+  s_7dd86aa5b0e784::t_0dec222f81e198 7
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-6,8
+packages/contracts/src/index.ts
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-108
+apps/mobile/src/api/verification.ts
+  s_7dd86aa5b0e784::t_82d1fee023430f 5
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-4,6-16
+pnpm-workspace.yaml
+  s_7dd86aa5b0e784::t_6221d90b11f58d 4-6
+  s_7dd86aa5b0e784::t_85e42cd6134745 8
+  s_7dd86aa5b0e784::t_4c126ba8ce396c 7
+  s_7dd86aa5b0e784::t_c86112c35006f3 9-10
+  s_7dd86aa5b0e784::t_c6fae769226300 1-3
+apps/cli/src/smoke.ts
+  s_7dd86aa5b0e784::t_0dec222f81e198 1-53
+apps/dashboard/index.html
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-12
+docs/adr/0001-contract-first-workstreams.md
+  s_7dd86aa5b0e784::t_c6fae769226300 1-32
+AGENTS.md
+  s_7dd86aa5b0e784::t_c6fae769226300 14-24
+apps/backend/src/domain/verification.ts
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-9
+packages/codex/tsconfig.json
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-8
+docs/workstreams/client-ui.md
+  s_7dd86aa5b0e784::t_139a92c84056e3 1-54
+apps/mobile/index.ts
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-5
+config/releases.json
+  s_7dd86aa5b0e784::t_c6fae769226300 1-32
+docs/workstreams/mlops.md
+  s_7dd86aa5b0e784::t_139a92c84056e3 1-52
+apps/backend/package.json
+  s_7dd86aa5b0e784::t_4c126ba8ce396c 13-16
+  s_7dd86aa5b0e784::t_871ff6742c4fd7 8
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-7,9-12,17-18
+tsconfig.base.json
+  s_7dd86aa5b0e784::t_c6fae769226300 1-16
+apps/backend/src/capture.ts
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-10,12-15,17-52
+  s_7dd86aa5b0e784::t_ae78e6e95a6867 11,16
+apps/mobile/tsconfig.json
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-8
+packages/contracts/tsconfig.json
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-7
+apps/backend/tsconfig.json
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-8
+packages/codex/test/workflow.test.ts
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-46
+package.json
+  s_7dd86aa5b0e784::t_c6fae769226300 1-19,31
+  s_7dd86aa5b0e784::t_4c126ba8ce396c 20-30
+apps/backend/src/index.ts
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-3
+apps/mobile/package.json
+  s_7dd86aa5b0e784::t_a0c7c1b2f742ad 1-15,22-23
+  s_7dd86aa5b0e784::t_4c126ba8ce396c 16-21
+docs/workstreams/backend.md
+  s_7dd86aa5b0e784::t_139a92c84056e3 1-52
+packages/orchestrator/package.json
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-7,9-10,14-15
+  s_7dd86aa5b0e784::t_4c126ba8ce396c 11-13
+  s_7dd86aa5b0e784::t_871ff6742c4fd7 8
+packages/codex/package.json
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-7,9-10,14-15
+  s_7dd86aa5b0e784::t_871ff6742c4fd7 8
+  s_7dd86aa5b0e784::t_4c126ba8ce396c 11-13
+packages/orchestrator/src/index.ts
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-60
+apps/cli/package.json
+  s_7dd86aa5b0e784::t_0dec222f81e198 8,10
+  s_7dd86aa5b0e784::t_4c126ba8ce396c 11-16
+  s_7dd86aa5b0e784::t_9cef4fbf02dcaa 1-7,9,17-18
+pnpm-lock.yaml
+  s_7dd86aa5b0e784::t_6a942f5c59187e 1-6602
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "c089c0a2d4c665a66e95fffed7c1598c75936d6d",
+  "prompts": {},
+  "sessions": {
+    "s_7dd86aa5b0e784": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5f58-63bd-7e51-8b41-d4cbc7448f49",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "deveshsangwan <dev.sangwan2001@gmail.com>"
+    }
+  }
+}
