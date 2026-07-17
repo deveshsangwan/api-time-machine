@@ -205,13 +205,4 @@ The historical-gate CI workflow is ready on `workstream/ci-gate`: it fetches imm
 - It exercises the React Native TypeScript data layer—not an emulator, native bridge, or device farm.
 - A Candidate Repair is never automatically merged or called verified until deterministic backend and historical-client checks pass.
 
-## Team workflow
-
-| Area | Ownership |
-| --- | --- |
-| Backend capture and legacy projection | Backend |
-| Historical app tags and matrix presentation | Client/UI |
-| Codex analysis, repair policy and evaluation | MLOps |
-| Worktrees, evidence, CLI and CI gate | Integration |
-
-Read [the product requirements](docs/PRD.md), [domain context](CONTEXT.md), and [workstream guide](docs/WORKSTREAMS.md) for the implementation contract.
+Read [the product requirements](docs/PRD.md) and [domain context](CONTEXT.md) for the implementation contract.
