@@ -1,34 +1,34 @@
-import { fileURLToPath } from "node:url";
+#!/usr/bin/env node
 
-import { captureVerificationResponse } from "@atm/backend";
-import {
-  compatibilityExitCode,
-  renderSurvivalMatrix,
-  runHistoricalCompatibilityGate,
-} from "@atm/orchestrator";
+import { checkProject } from "./check.js";
+import { serveDashboard } from "./dashboard.js";
+import { doctorProject } from "./doctor.js";
+import { initializeProject } from "./init.js";
+import { findProjectConfiguration } from "./project-config.js";
 
-const repositoryPath = fileURLToPath(new URL("../../../", import.meta.url));
-const runId = `run-${new Date().toISOString().replace(/[:.]/g, "-")}`;
+const command = process.argv[2] ?? "check";
 
 try {
-  const { evidence, run } = await runHistoricalCompatibilityGate(
-    {
-      runId,
-      manifestPath: `${repositoryPath}config/releases.json`,
-      repositoryPath,
-      worktreesRoot: `${repositoryPath}.worktrees`,
-      runsRoot: `${repositoryPath}runs`,
-    },
-    {
-      captureResponse(release) {
-        return captureVerificationResponse({ appVersion: release.version });
-      },
-    },
-  );
-
-  console.log(renderSurvivalMatrix(run));
-  console.log(`Evidence: ${evidence.directory}`);
-  process.exitCode = compatibilityExitCode(run.status);
+  if (command === "help" || command === "--help" || command === "-h") {
+    console.log("Usage: api-time-machine <init|doctor|check|dashboard>");
+  } else if (command === "init") {
+    console.log(await initializeProject(process.cwd()));
+  } else {
+    const project = await findProjectConfiguration(process.cwd());
+    if (command === "doctor") {
+      console.log(await doctorProject(project));
+    } else if (command === "dashboard") {
+      await serveDashboard(project);
+    } else if (command === "check") {
+      const result = await checkProject(project);
+      console.log(result.report);
+      console.log(`Evidence: ${result.evidence.directory}`);
+      console.log(`Dashboard artifact: ${result.dashboardArtifact}`);
+      process.exitCode = result.exitCode;
+    } else {
+      throw new Error(`Unknown command: ${command}`);
+    }
+  }
 } catch (error) {
   console.error(
     "API Time Machine could not complete compatibility verification:",

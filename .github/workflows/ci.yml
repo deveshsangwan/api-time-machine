@@ -25,3 +25,4 @@ jobs:
           PNPM_CONFIG_FETCH_RETRY_MAXTIMEOUT: "60000"
         run: pnpm install --frozen-lockfile
       - run: pnpm check
+      - run: pnpm smoke:package

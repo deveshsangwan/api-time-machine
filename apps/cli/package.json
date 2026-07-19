@@ -1,18 +1,38 @@
 {
   "name": "@atm/cli",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
+  "private": false,
   "type": "module",
+  "description": "Deterministic compatibility checks for historical mobile clients.",
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "api-time-machine": "./dist/index.js"
+  },
+  "files": [
+    "dist/index.js",
+    "dist/dashboard"
+  ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm --clean",
+    "build": "tsup src/index.ts --format esm --clean --no-splitting && node scripts/copy-dashboard.mjs",
+    "dashboard:api": "node --import tsx src/dashboard-server.ts",
+    "start": "node --import tsx src/index.ts",
     "smoke": "vitest run test/smoke.test.ts --reporter=verbose",
+    "smoke:package": "pnpm --filter @atm/dashboard build && pnpm build && node scripts/package-smoke.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run"
   },
-  "dependencies": {
+  "devDependencies": {
     "@atm/backend": "workspace:*",
+    "@atm/codex": "workspace:*",
     "@atm/contracts": "workspace:*",
+    "@atm/dashboard": "workspace:*",
     "@atm/mobile": "workspace:*",
-    "@atm/orchestrator": "workspace:*"
+    "@atm/orchestrator": "workspace:*",
+    "zod": "^4.4.3"
   }
 }

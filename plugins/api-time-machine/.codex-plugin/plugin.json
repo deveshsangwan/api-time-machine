@@ -1,6 +1,6 @@
 {
   "name": "api-time-machine",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Check backend API changes against historical mobile-client behavior and propose bounded compatibility repairs.",
   "author": {
     "name": "API Time Machine Team",
