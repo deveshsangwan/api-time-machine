@@ -1,0 +1,139 @@
+apps/cli/src/capture-command.ts
+  s_e657df3e6e95b7::t_7495cb512992f8 1-9,15-17,20-27,29-65
+  s_e657df3e6e95b7::t_c84821b2d18633 10-14,18-19,28
+apps/cli/test/capture-command.test.ts
+  s_e657df3e6e95b7::t_c84821b2d18633 29
+  s_e657df3e6e95b7::t_7495cb512992f8 1-26,28,30-71
+  s_e657df3e6e95b7::t_39cfc126f4e2db 27
+config/client-probe.ts
+  s_e657df3e6e95b7::t_056774b4ed7980 1-5,7-93,95-117
+  s_e657df3e6e95b7::t_adb8672f2ded68 6
+  s_e657df3e6e95b7::t_aa26748ae376b8 94
+apps/cli/src/repository.ts
+  s_e657df3e6e95b7::t_bd90f838c52f98 66
+  s_e657df3e6e95b7::t_2cebf0b54c2e39 1-65,67-71
+.github/workflows/ci.yml
+  s_e657df3e6e95b7::t_7928a6141f3b09 28
+plugins/api-time-machine/.codex-plugin/plugin.json
+  s_e657df3e6e95b7::t_3d92d86cf8efb1 3
+apps/cli/test/distributed.test.ts
+  s_e657df3e6e95b7::t_6eece57cd88dae 1-71
+apps/cli/scripts/package-smoke.mjs
+  s_e657df3e6e95b7::t_5e1ccb97364f74 35
+  s_e657df3e6e95b7::t_7928a6141f3b09 1-34,36-37
+apps/cli/test/init.test.ts
+  s_e657df3e6e95b7::t_335cb413d3c4c5 1-29
+apps/cli/src/project-config.ts
+  s_e657df3e6e95b7::t_bd90f838c52f98 58-60,67-75,120
+  s_e657df3e6e95b7::t_6ad2a76d75ab92 61-66
+  s_e657df3e6e95b7::t_7495cb512992f8 1,3-15,22-29,31,33-37,42-57,78-83,85-93,95-99,101-117,119,123,125-141,143-160,170,175-176,202
+  s_e657df3e6e95b7::t_b47167a9cceef5 2,38-41,142,177-201
+  s_e657df3e6e95b7::t_c84821b2d18633 16-17,19-21,32,171-174
+  s_e657df3e6e95b7::t_73bdf3a05da24f 76-77,84,94,100,118,124
+  s_e657df3e6e95b7::t_2cebf0b54c2e39 18,30,121-122,161-169
+config/capture-response.ts
+  s_e657df3e6e95b7::t_088973d51cbcb7 1
+  s_e657df3e6e95b7::t_7495cb512992f8 2-8
+plugins/api-time-machine/skills/api-time-machine/SKILL.md
+  s_e657df3e6e95b7::t_fd191261e693a3 12-19,24
+  s_e657df3e6e95b7::t_e2997b48b2363b 20
+apps/cli/src/index.ts
+  s_e657df3e6e95b7::t_0281711dee50a1 1,3,5,9,12,16-19,22-25,27-31
+  s_e657df3e6e95b7::t_91d0a471bb59b6 4,13,20-21
+  s_e657df3e6e95b7::t_b47167a9cceef5 7
+  s_e657df3e6e95b7::t_780a3400801837 26
+  s_e657df3e6e95b7::t_335cb413d3c4c5 6,14-15
+apps/cli/test/project-config.test.ts
+  s_e657df3e6e95b7::t_bd90f838c52f98 72-83
+  s_e657df3e6e95b7::t_b47167a9cceef5 5,61-70
+  s_e657df3e6e95b7::t_c84821b2d18633 20-24,45-49
+  s_e657df3e6e95b7::t_7495cb512992f8 1-4,6-19,25-42,44,50-60,71,84
+  s_e657df3e6e95b7::t_39cfc126f4e2db 43
+README.md
+  s_4438deee71a370::t_273173eebf2a40 160,165
+  s_e657df3e6e95b7::t_4296299e633651 117,126,137,156-158,161-164,167-168
+  s_e657df3e6e95b7::t_4d3e716837e1c9 159,166
+apps/cli/test/dashboard-artifact.test.ts
+  s_e657df3e6e95b7::t_780a3400801837 1-31
+apps/cli/scripts/copy-dashboard.mjs
+  s_e657df3e6e95b7::t_91d0a471bb59b6 1-9
+docs/portable-integration.md
+  s_e657df3e6e95b7::t_3d92d86cf8efb1 1-58
+apps/cli/package.json
+  s_e657df3e6e95b7::t_d86c28af959ea8 6-12
+  s_e657df3e6e95b7::t_7495cb512992f8 29
+  s_e657df3e6e95b7::t_91d0a471bb59b6 17-18,25,33
+  s_e657df3e6e95b7::t_7eebf4b5970789 21
+  s_e657df3e6e95b7::t_0281711dee50a1 3-4,13-16,19
+  s_e657df3e6e95b7::t_640f9aa6b74e41 35-36
+apps/cli/src/check.ts
+  s_e657df3e6e95b7::t_2cebf0b54c2e39 11,15-18,23,32-37
+  s_e657df3e6e95b7::t_056774b4ed7980 8,30-31
+  s_e657df3e6e95b7::t_0281711dee50a1 1-7,10,12-14,19-22,24-29,38-40,45-47,49-52
+  s_e657df3e6e95b7::t_780a3400801837 9,41-44,48
+apps/cli/src/doctor.ts
+  s_e657df3e6e95b7::t_0281711dee50a1 1-3,5,7-14,29-32,34-36
+  s_e657df3e6e95b7::t_ca245bffe73807 4,6,15-28,33
+apps/cli/src/command.ts
+  s_e657df3e6e95b7::t_c84821b2d18633 1-50
+apps/cli/src/dashboard-api.ts
+  s_e657df3e6e95b7::t_780a3400801837 15-20,22,24,177,186,195
+apps/cli/src/dashboard.ts
+  s_e657df3e6e95b7::t_91d0a471bb59b6 1-2,4-36,38-65,68-88
+  s_e657df3e6e95b7::t_945799278314bf 3,66-67
+  s_e657df3e6e95b7::t_78e3aae784ad4c 37
+.gitignore
+  s_e657df3e6e95b7::t_f636407b12fc28 9
+apps/cli/tsconfig.json
+  s_e657df3e6e95b7::t_adb8672f2ded68 7
+apps/cli/src/dashboard-artifact.ts
+  s_e657df3e6e95b7::t_780a3400801837 1-64
+apps/cli/src/init.ts
+  s_e657df3e6e95b7::t_335cb413d3c4c5 1-74,76-92
+  s_e657df3e6e95b7::t_f636407b12fc28 75
+apps/cli/src/client-probe.ts
+  s_e657df3e6e95b7::t_056774b4ed7980 1-99,103-139
+  s_e657df3e6e95b7::t_bd90f838c52f98 100-102
+apps/cli/test/repository.test.ts
+  s_e657df3e6e95b7::t_39cfc126f4e2db 1-38
+apps/dashboard/src/App.tsx
+  s_e657df3e6e95b7::t_bd90f838c52f98 132,143,216,219-223,620
+  s_e657df3e6e95b7::t_f116bb3e1524ef 109,112,555-556,562-564,566-570
+api-time-machine.config.json
+  s_e657df3e6e95b7::t_2cebf0b54c2e39 13
+  s_e657df3e6e95b7::t_c84821b2d18633 14-18
+  s_e657df3e6e95b7::t_75092fcefc286d 8
+  s_e657df3e6e95b7::t_7495cb512992f8 1-7,9-12,19-23
+package.json
+  s_e657df3e6e95b7::t_aeec425e4efb24 18-19
+apps/cli/test/dashboard.test.ts
+  s_e657df3e6e95b7::t_91d0a471bb59b6 1-19
+docs/adr/0002-portable-runner.md
+  s_e657df3e6e95b7::t_3d92d86cf8efb1 1-36
+pnpm-lock.yaml
+  s_e657df3e6e95b7::t_9a88048e1bcd6d 49,59-61,68-70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "e3f2c7d7b769438c51125d0c048a942c5d243225",
+  "prompts": {},
+  "sessions": {
+    "s_4438deee71a370": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f606c-d22d-7692-9757-806be9ea4d33",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "deveshsangwan <dev.sangwan2001@gmail.com>"
+    },
+    "s_e657df3e6e95b7": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f7a5d-2963-7ac0-ba5c-8b7e85e66974",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "deveshsangwan <dev.sangwan2001@gmail.com>"
+    }
+  }
+}
