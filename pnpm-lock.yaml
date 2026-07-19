@@ -46,7 +46,7 @@ importers:
         version: 5.10.0
 
   apps/cli:
-    dependencies:
+    devDependencies:
       '@atm/backend':
         specifier: workspace:*
         version: link:../backend
@@ -56,12 +56,18 @@ importers:
       '@atm/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
+      '@atm/dashboard':
+        specifier: workspace:*
+        version: link:../dashboard
       '@atm/mobile':
         specifier: workspace:*
         version: link:../mobile
       '@atm/orchestrator':
         specifier: workspace:*
         version: link:../../packages/orchestrator
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
 
   apps/dashboard:
     dependencies:

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "releases": {
+    "manifest": "config/releases.json"
+  },
+  "backend": {
+    "capture": {
+      "command": ["node", "--import", "tsx", "config/capture-response.ts"]
+    }
+  },
+  "client": {
+    "repository": ".",
+    "cache": ".api-time-machine/repositories",
+    "worktrees": ".worktrees",
+    "probe": {
+      "command": ["node", "--import", "tsx", "config/client-probe.ts"],
+      "timeoutMs": 90000
+    }
+  },
+  "evidence": {
+    "runs": "runs"
+  }
+}

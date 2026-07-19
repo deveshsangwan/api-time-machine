@@ -114,7 +114,7 @@ pnpm check
 ### 2. Verify the repaired, green path
 
 ```bash
-pnpm --filter @atm/cli exec tsx src/index.ts
+pnpm --filter @atm/cli start check
 ```
 
 This writes an inspectable Evidence Bundle to `runs/<run-id>/`:
@@ -123,6 +123,7 @@ This writes an inspectable Evidence Bundle to `runs/<run-id>/`:
 runs/<run-id>/
 ├── manifest.json          # machine-readable run, shares, revisions and hashes
 ├── survival-matrix.md     # human-readable result
+├── run-view.json          # sanitized dashboard artifact
 └── captures/
     └── <sha256>.json      # exact captured HTTP response
 ```
@@ -133,7 +134,7 @@ runs/<run-id>/
 git fetch origin demo/historical-breaking
 git switch demo/historical-breaking
 pnpm install --frozen-lockfile
-pnpm --filter @atm/cli exec tsx src/index.ts
+pnpm --filter @atm/cli start check
 ```
 
 Expect an **18% blast radius** and exit code **1**. Return to the repaired branch and run the same command to see all releases pass with exit code **0**.
@@ -151,6 +152,19 @@ pnpm --filter @atm/codex eval       # deterministic policy/evaluation suite
 For a guarded live evaluation, follow [`packages/codex/README.md`](packages/codex/README.md). Never place an API key in Git, browser code, a mobile app, or a committed `.env` file.
 
 </details>
+
+### Attach another repository
+
+The backend and mobile applications in this repository remain proof-of-concept fixtures. The CLI reaches them through configured executable adapters, the same interface used by another repository.
+
+```bash
+api-time-machine init
+api-time-machine doctor
+api-time-machine check
+api-time-machine dashboard
+```
+
+Historical clients may live in the backend monorepo, a sibling checkout, or a separate remote Git repository. See [Portable integration](docs/portable-integration.md) for the configuration and command protocol.
 
 ## How we built it
 

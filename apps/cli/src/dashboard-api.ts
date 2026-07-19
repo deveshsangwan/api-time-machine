@@ -8,34 +8,20 @@ import {
   CapturedResponseSchema,
   CompatibilityRunSchema,
   type CapturedResponse,
-  type ChangeProfile,
-  type ClientResult,
   type CompatibilityRun,
   type RepairProposal,
 } from "@atm/contracts";
 
+import {
+  sanitizeRun,
+  type DashboardPayload,
+  type PresentedRepair,
+  type SemanticResult,
+} from "./dashboard-artifact.js";
+
+export type { DashboardPayload, PresentedRepair, SemanticResult };
+
 const execFileAsync = promisify(execFile);
-
-export type SemanticResult =
-  | { status: "not_requested" }
-  | { status: "analysis_accepted"; change: ChangeProfile }
-  | {
-      status: "candidate_repair";
-      change: ChangeProfile;
-      repair: PresentedRepair;
-    }
-  | { status: "rejected"; message: string };
-
-export interface DashboardPayload {
-  compatibility: CompatibilityRun;
-  semantic: SemanticResult;
-  source: "local-evidence";
-}
-
-export type PresentedRepair = Pick<
-  RepairProposal,
-  "summary" | "legacyProjection" | "allowedPaths"
->;
 
 interface EvidenceManifest {
   run: CompatibilityRun;
@@ -158,24 +144,6 @@ function selectCapture(evidence: LoadedEvidence): CapturedResponse {
   return selected;
 }
 
-function sanitizeClientResult(result: ClientResult): ClientResult {
-  return {
-    ...result,
-    evidence: {
-      command: result.release.testCommand,
-      sourceFile: result.evidence.sourceFile,
-      sourceLine: result.evidence.sourceLine,
-    },
-  };
-}
-
-function sanitizeRun(run: CompatibilityRun): CompatibilityRun {
-  return {
-    ...run,
-    clients: run.clients.map(sanitizeClientResult),
-  };
-}
-
 function presentRepair(repair: RepairProposal): PresentedRepair {
   return {
     summary: repair.summary,
@@ -206,6 +174,7 @@ export async function analyzeEvidence(
 
   if (failures.length === 0) {
     return {
+      schemaVersion: 1,
       compatibility: sanitizeRun(evidence.run),
       semantic: { status: "analysis_accepted", change },
       source: "local-evidence",
@@ -214,6 +183,7 @@ export async function analyzeEvidence(
 
   const repair = await workflow.proposeRepair({ change, failures });
   return {
+    schemaVersion: 1,
     compatibility: sanitizeRun(evidence.run),
     semantic: { status: "candidate_repair", change, repair: presentRepair(repair) },
     source: "local-evidence",
@@ -222,6 +192,7 @@ export async function analyzeEvidence(
 
 export function evidencePayload(evidence: LoadedEvidence): DashboardPayload {
   return {
+    schemaVersion: 1,
     compatibility: sanitizeRun(evidence.run),
     semantic: { status: "not_requested" },
     source: "local-evidence",

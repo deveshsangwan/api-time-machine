@@ -106,9 +106,10 @@ type SemanticResult =
   | { status: "rejected"; message: string };
 
 type DashboardPayload = {
+  schemaVersion: 1;
   compatibility: CompatibilityRun;
   semantic: SemanticResult;
-  source: "local-evidence";
+  source: "artifact" | "local-evidence";
 };
 
 function sourcePointer(result: ClientResult) {
@@ -128,6 +129,7 @@ type DashboardViewProps = DashboardProps & {
   onExit: () => void;
   onAnalyze: () => void;
   codexState: "idle" | "running" | "failed";
+  canAnalyze: boolean;
   integrationMessage: string;
 };
 
@@ -138,6 +140,7 @@ function DashboardView({
   onExit,
   onAnalyze,
   codexState,
+  canAnalyze,
   integrationMessage,
 }: DashboardViewProps) {
   const [selectedVersion, setSelectedVersion] = useState(run.clients[0]?.release.version ?? "");
@@ -210,10 +213,14 @@ function DashboardView({
             <button
               className="quiet-button codex-button"
               type="button"
-              disabled={codexState === "running"}
+              disabled={codexState === "running" || !canAnalyze}
               onClick={onAnalyze}
             >
-              {codexState === "running" ? "Codex is analyzing…" : "Analyze with Codex"}
+              {codexState === "running"
+                ? "Codex is analyzing…"
+                : canAnalyze
+                  ? "Analyze with Codex"
+                  : "Use Codex plugin"}
             </button>
             <button className="quiet-button" type="button" onClick={copyRunId}>
               {copied ? "Copied" : "Copy run ID"}
@@ -545,14 +552,22 @@ export default function App({ run, beforeRun, semantic: suppliedSemantic }: Dash
     if (run) return;
 
     const controller = new AbortController();
-    fetch("/api/time-machine/latest", { signal: controller.signal })
+    const artifactUrl = new URLSearchParams(window.location.search).get("artifact");
+    fetch(artifactUrl ?? "/api/time-machine/latest", { signal: controller.signal })
       .then(async (response) => {
         if (!response.ok) throw new Error("Local evidence bridge is unavailable.");
         return response.json() as Promise<DashboardPayload>;
       })
       .then((payload) => {
+        if (payload.schemaVersion !== 1 || !payload.compatibility) {
+          throw new Error("Dashboard artifact is invalid or unsupported.");
+        }
         setLivePayload(payload);
-        setIntegrationMessage("Loaded from the latest local deterministic evidence bundle.");
+        setIntegrationMessage(
+          payload.source === "artifact"
+            ? "Loaded from a portable deterministic run artifact."
+            : "Loaded from the latest local deterministic evidence bundle.",
+        );
       })
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === "AbortError") return;
@@ -602,6 +617,7 @@ export default function App({ run, beforeRun, semantic: suppliedSemantic }: Dash
       onExit={closeDashboard}
       onAnalyze={analyzeWithCodex}
       codexState={codexState}
+      canAnalyze={livePayload?.source !== "artifact"}
       integrationMessage={integrationMessage}
     />
   ) : (

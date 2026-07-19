@@ -15,7 +15,8 @@
     "dev:backend": "pnpm --filter @atm/backend dev",
     "dev:mobile": "pnpm --filter @atm/mobile start",
     "dev:dashboard": "pnpm --filter @atm/dashboard dev",
-    "smoke": "pnpm --filter @atm/cli smoke"
+    "smoke": "pnpm --filter @atm/cli smoke",
+    "smoke:package": "pnpm --filter @atm/cli smoke:package"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",

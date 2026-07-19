@@ -6,6 +6,7 @@ coverage/
 .expo/
 .worktrees/
 runs/
+.api-time-machine/repositories/
 *.log
 
 # Local and provider credentials. Commit only deliberately blank examples.
